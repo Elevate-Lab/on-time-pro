@@ -19,4 +19,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/my_nav" />
 
+    <FrameLayout
+        android:id="@+id/Nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:padding="8dp"
+        android:elevation="1.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rounded_corner"
+        app:menu="@menu/menu" />
+
 </RelativeLayout>
