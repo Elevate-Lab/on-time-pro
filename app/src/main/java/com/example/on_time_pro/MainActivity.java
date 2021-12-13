@@ -2,6 +2,7 @@ package com.example.on_time_pro;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
@@ -9,22 +10,65 @@ import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
+
+import com.example.on_time_pro.fragments.AssignmentsFragment;
+import com.example.on_time_pro.fragments.EmailAttachFragment;
+import com.example.on_time_pro.fragments.MainFragment;
+import com.example.on_time_pro.fragments.ScheduleFragment;
+import com.example.on_time_pro.fragments.SettingsFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
     NavController navController;
     private Toolbar toolbar;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        bottomNavigationView = findViewById(R.id.bottomNav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(bottomNavMethod);
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         //NavigationUI.setupActionBarWithNavController(this, navController);
 
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener bottomNavMethod = new
+            BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(MenuItem menuItem) {
+                    Fragment fragment = null;
+                    switch (menuItem.getItemId()) {
+                        case R.id.Classroom:
+                            fragment = new MainFragment();
+                            break;
+
+                        case R.id.Schedule:
+                            fragment = new ScheduleFragment();
+                            break;
+
+                        case R.id.Assignments:
+                            fragment = new AssignmentsFragment();
+                            break;
+
+                        case R.id.Email:
+                            fragment = new EmailAttachFragment();
+                            break;
+
+                        case R.id.Settings:
+                            fragment = new SettingsFragment();
+                            break;
+                    }
+
+                    getSupportFragmentManager().beginTransaction().replace(R.id.Nav, fragment).commit();
+                    return true;
+                }
+            };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
