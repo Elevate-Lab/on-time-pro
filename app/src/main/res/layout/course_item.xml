@@ -19,11 +19,12 @@
             android:textColor="@color/black"/>
 
         <ImageView
+            android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true"
             android:src="@drawable/ic_baseline_delete_24" />
 
         <TextView
@@ -52,6 +53,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/chatroom"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -59,6 +61,7 @@
                 android:textAllCaps="false"/>
 
             <Button
+                android:id="@+id/joinMeet"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -67,6 +70,7 @@
                 android:textAllCaps="false"/>
 
             <Button
+                android:id="@+id/preview"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_marginLeft="8dp"
