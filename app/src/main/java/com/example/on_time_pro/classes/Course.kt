@@ -1,6 +1,6 @@
 package com.example.on_time_pro.classes
 
-class course {
+class Course {
 
     private var courseName: String? = null
     private var facultyName: String? = null
