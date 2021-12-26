@@ -1,4 +1,4 @@
-package com.example.on_time_pro.classes
+package com.gdsciiita.ontimepro.classes
 
 class Assignment {
     private var date:String?=null

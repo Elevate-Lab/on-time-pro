@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.on_time_pro.fragments.MainFragment"
+        android:name="com.gdsciiita.ontimepro.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
 
@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/splashScreenFragment"
-        android:name="com.example.on_time_pro.fragments.SplashScreenFragment"
+        android:name="com.gdsciiita.ontimepro.fragments.SplashScreenFragment"
         android:label="fragment_splash_screen"
         tools:layout="@layout/fragment_splash_screen" >
         <action
