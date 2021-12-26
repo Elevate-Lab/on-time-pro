@@ -17,7 +17,6 @@ import com.example.on_time_pro.fragments.AssignmentsFragment;
 import com.example.on_time_pro.fragments.EmailAttachFragment;
 import com.example.on_time_pro.fragments.MainFragment;
 import com.example.on_time_pro.fragments.ScheduleFragment;
-import com.example.on_time_pro.fragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -66,9 +65,6 @@ public class MainActivity extends AppCompatActivity {
                             fragment = new EmailAttachFragment();
                             break;
 
-                        case R.id.Settings:
-                            fragment = new SettingsFragment();
-                            break;
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.Nav, fragment).commit();
