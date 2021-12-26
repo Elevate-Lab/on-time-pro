@@ -1,22 +1,20 @@
-package com.example.on_time_pro;
+package com.gdsciiita.ontimepro;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import com.example.on_time_pro.fragments.AssignmentsFragment;
-import com.example.on_time_pro.fragments.EmailAttachFragment;
-import com.example.on_time_pro.fragments.MainFragment;
-import com.example.on_time_pro.fragments.ScheduleFragment;
+import com.gdsciiita.ontimepro.fragments.AssignmentsFragment;
+import com.gdsciiita.ontimepro.fragments.EmailAttachFragment;
+import com.gdsciiita.ontimepro.fragments.MainFragment;
+import com.gdsciiita.ontimepro.fragments.ScheduleFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

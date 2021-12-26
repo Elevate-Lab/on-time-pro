@@ -1,4 +1,4 @@
-package com.example.on_time_pro;
+package com.gdsciiita.ontimepro;
 
 import android.content.Context;
 

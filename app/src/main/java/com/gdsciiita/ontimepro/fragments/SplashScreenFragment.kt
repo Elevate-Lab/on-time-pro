@@ -1,4 +1,4 @@
-package com.example.on_time_pro.fragments
+package com.gdsciiita.ontimepro.fragments
 
 import android.os.Bundle
 import android.os.Handler
@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.example.on_time_pro.R
+import com.gdsciiita.ontimepro.R
 
 class SplashScreenFragment : Fragment() {
 

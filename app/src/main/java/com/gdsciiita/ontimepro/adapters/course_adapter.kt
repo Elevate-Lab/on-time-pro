@@ -1,4 +1,4 @@
-package com.example.on_time_pro.adapters
+package com.gdsciiita.ontimepro.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,10 +7,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
-import com.example.on_time_pro.R
-import com.example.on_time_pro.classes.Course
+import com.gdsciiita.ontimepro.R
+import com.gdsciiita.ontimepro.classes.Course
 import java.util.ArrayList
 
 class course_adapter(private val context: Context, private val listener:course_adapter):RecyclerView.Adapter<course_adapter.MyViewHolder>() {

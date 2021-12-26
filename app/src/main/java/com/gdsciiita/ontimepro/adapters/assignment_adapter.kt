@@ -1,4 +1,4 @@
-package com.example.on_time_pro.adapters
+package com.gdsciiita.ontimepro.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.on_time_pro.R
-import com.example.on_time_pro.classes.Assignment
+import com.gdsciiita.ontimepro.R
+import com.gdsciiita.ontimepro.classes.Assignment
 import java.util.ArrayList
 
 class assignment_adapter(private val context: Context, private val listener:assignment_adapter):
