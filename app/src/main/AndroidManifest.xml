@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gdsciiita.ontimepro">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,17 +14,30 @@
         <activity
             android:name="com.gdsciiita.ontimepro.ProfileActivity"
             android:exported="false" />
+
         <activity
             android:name="com.gdsciiita.ontimepro.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name="com.gdsciiita.ontimepro.MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https"
+                    android:host="on-timepro.firebaseapp.com"
+                    android:path="/__/auth/handler"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.gdsciiita.ontimepro.MainActivity"
+            android:exported="false">
+
         </activity>
     </application>
 

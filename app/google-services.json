@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "770229005978",
+    "project_id": "on-timepro",
+    "storage_bucket": "on-timepro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:770229005978:android:ae071dd97b54ac90bdf923",
+        "android_client_info": {
+          "package_name": "com.gdsciiita.ontimepro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "770229005978-5blupgi9tbennej6gjo3qhq3u74rdj5d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gdsciiita.ontimepro",
+            "certificate_hash": "ccc3423986e8e48b6c8425decda042b0e483ffec"
+          }
+        },
+        {
+          "client_id": "770229005978-8l8avcpdlqgs45evueov4d51et4nlmiq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gdsciiita.ontimepro",
+            "certificate_hash": "972472eace00de9a509403ce0620d9d1c95bd9d6"
+          }
+        },
+        {
+          "client_id": "770229005978-tee7riokk1nn0qg1udlp1musa3o67pul.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUHTq_YCjLGYbJJRGwvPHFwYrSO6290Bw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "770229005978-tee7riokk1nn0qg1udlp1musa3o67pul.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
