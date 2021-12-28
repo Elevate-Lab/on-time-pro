@@ -1,10 +1,13 @@
 package com.gdsciiita.ontimepro;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -22,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
     NavController navController;
     private Toolbar toolbar;
     private BottomNavigationView bottomNavigationView;
+    private AppBarConfiguration appBarConfiguration;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle Toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +42,12 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(bottomNavMethod);
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         //NavigationUI.setupActionBarWithNavController(this, navController);
-
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        drawerLayout=findViewById(R.id.drawerLayout);
+        Toggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
+        drawerLayout.addDrawerListener(Toggle);
+        Toggle.syncState();
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
     }
@@ -69,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(Toggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

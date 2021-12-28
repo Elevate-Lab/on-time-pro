@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/home" android:title="Home" android:icon="@drawable/ic_home_24"/>
+    <item android:id="@+id/darkMode" android:title="Dark Theme" android:icon="@drawable/ic_baseline_dark_mode_24"/>
+    <item android:id="@+id/about" android:title="About" android:icon="@drawable/ic_baseline_about_24"/>
+    <item android:id="@+id/share" android:title="Share" android:icon="@drawable/ic_baseline_share_24"/>
+    <item android:id="@+id/logout" android:title="LogOut" android:icon="@drawable/ic_baseline_logout_24"/>
+
+</menu>
