@@ -1,32 +1,19 @@
 package com.gdsciiita.ontimepro.classes
 
-class Course {
-
-    private var courseName: String? = null
-    private var facultyName: String? = null
-    private var classType: String? = null
-
-    fun getCourseName(): String? {
-        return courseName
-    }
-
-    fun setCourseName(cName: String) {
-        courseName = cName
-    }
-
-    fun getFacultyName(): String? {
-        return facultyName
-    }
-
-    fun setFacultyName(fName: String) {
-        facultyName = fName
-    }
-
-    fun getClassType(): String? {
-        return classType
-    }
-
-    fun setclassType(cType: String) {
-        classType = cType
-    }
-}
+data class Course(
+    val alternateLink: String,
+    val calendarId: String,
+    val courseGroupEmail: String?,
+    val courseState: String?,
+    val creationTime: String?,
+    val descriptionHeading: String?,
+    val guardiansEnabled: Boolean?,
+    val id: String,
+    val name: String,
+    var facultyName: String?,
+    var classType: String?,
+    val ownerId: String?,
+    val section: String?,
+    val teacherGroupEmail: String?,
+    val updateTime: String?
+)
