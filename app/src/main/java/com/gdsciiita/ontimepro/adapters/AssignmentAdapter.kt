@@ -11,8 +11,8 @@ import com.gdsciiita.ontimepro.R
 import com.gdsciiita.ontimepro.classes.Assignment
 import java.util.ArrayList
 
-class assignment_adapter(private val context: Context, private val listener:assignment_adapter):
-    RecyclerView.Adapter<assignment_adapter.MyViewHolder>() {
+class AssignmentAdapter(private val context: Context, private val listener:AssignmentAdapter):
+    RecyclerView.Adapter<AssignmentAdapter.MyViewHolder>() {
 
     private var assignments= ArrayList<Assignment>()
 
@@ -28,7 +28,7 @@ class assignment_adapter(private val context: Context, private val listener:assi
         val markDone: Button =itemview.findViewById(R.id.markDone)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): assignment_adapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AssignmentAdapter.MyViewHolder {
         val viewHolder= MyViewHolder(LayoutInflater.from(context).inflate(R.layout.assignment_item,parent,false))
 
         viewHolder.addAssign.setOnClickListener {
@@ -44,7 +44,7 @@ class assignment_adapter(private val context: Context, private val listener:assi
 
     }
 
-    override fun onBindViewHolder(holder: assignment_adapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: AssignmentAdapter.MyViewHolder, position: Int) {
         val current=assignments[position]
         holder.date.text=current.getDate()
         holder.status.text=current.getStatus()

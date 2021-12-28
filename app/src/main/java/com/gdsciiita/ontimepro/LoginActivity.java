@@ -7,6 +7,7 @@ import static androidx.core.content.PackageManagerCompat.LOG_TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.accounts.Account;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.gdsciiita.ontimepro.classes.User;
 import com.google.android.gms.auth.GoogleAuthException;
 import com.google.android.gms.auth.GoogleAuthUtil;
 import com.google.android.gms.auth.api.Auth;
@@ -111,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            getAuthToken(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -121,19 +123,40 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    private void getAuthToken(FirebaseUser currentUser){
+        if(currentUser!=null) {
+            Runnable runnable = () -> {
+                try {
+                    String scope = "oauth2:" + getString(R.string.auth_scope);
+                    Account accountDetails = new Account(currentUser.getEmail(), GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE);
+                    User.authToken = "Bearer "+GoogleAuthUtil.getToken(getApplicationContext(), accountDetails, scope, new Bundle());
+                    User.userName = currentUser.getDisplayName();
+                    User.firebaseToken = currentUser.getIdToken(true).toString();
+                    User.userEmail = currentUser.getEmail();
+                    Log.i(TAG, User.userEmail+" "+User.authToken);
+                    updateUI(currentUser);
+                } catch (IOException | GoogleAuthException e) {
+                    e.printStackTrace();
+                }
+            };
+
+            AsyncTask.execute(runnable);
+        }
+    }
+
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+        getAuthToken(currentUser);
     }
 
 
     private void updateUI(FirebaseUser currentUser) {
         if(currentUser != null) {
-            startActivity(new Intent(this, ProfileActivity.class));
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         }
     }
