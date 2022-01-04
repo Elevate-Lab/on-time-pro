@@ -1,11 +1,13 @@
 package com.gdsciiita.ontimepro;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 
@@ -13,11 +15,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
-import com.gdsciiita.ontimepro.fragments.AssignmentsFragment;
-import com.gdsciiita.ontimepro.fragments.EmailAttachFragment;
-import com.gdsciiita.ontimepro.fragments.MainFragment;
-import com.gdsciiita.ontimepro.fragments.ScheduleFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(intent);
 
         bottomNavigationView = findViewById(R.id.bottomNav);
-        bottomNavigationView.setOnNavigationItemSelectedListener(bottomNavMethod);
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         //NavigationUI.setupActionBarWithNavController(this, navController);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
@@ -50,36 +48,21 @@ public class MainActivity extends AppCompatActivity {
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
-    }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener bottomNavMethod = new
-            BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(MenuItem menuItem) {
-                    Fragment fragment = null;
-                    switch (menuItem.getItemId()) {
-                        case R.id.Classroom:
-                            fragment = new MainFragment();
-                            break;
-
-                        case R.id.Schedule:
-                            fragment = new ScheduleFragment();
-                            break;
-
-                        case R.id.Assignments:
-                            fragment = new AssignmentsFragment();
-                            break;
-
-                        case R.id.Email:
-                            fragment = new EmailAttachFragment();
-                            break;
-
-                    }
-
-                    getSupportFragmentManager().beginTransaction().replace(R.id.Nav, fragment).commit();
-                    return true;
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller,
+                                             @NonNull NavDestination destination, @Nullable Bundle arguments) {
+                if(destination.getId() == R.id.splashScreenFragment || destination.getId() == R.id.mainFragment) {
+                    toolbar.setVisibility(View.GONE);
+                    bottomNavigationView.setVisibility(View.GONE);
+                } else {
+                    toolbar.setVisibility(View.VISIBLE);
+                    bottomNavigationView.setVisibility(View.VISIBLE);
                 }
-            };
+            }
+        });
+    }
 
     public boolean onOptionsItemSelected(MenuItem item) {
 

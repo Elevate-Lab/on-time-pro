@@ -5,33 +5,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import com.gdsciiita.ontimepro.adapters.CourseAdapter
-import com.gdsciiita.ontimepro.databinding.FragmentMainBinding
-import com.gdsciiita.ontimepro.viewModels.MainViewModel
+import android.widget.Button
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import com.gdsciiita.ontimepro.R
 
-class MainFragment : Fragment() {
+class MainFragment : Fragment(),View.OnClickListener {
 
-    private val viewModel: MainViewModel by viewModels()
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_main, container, false)
+    }
+    var navC: NavController? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                                savedInstanceState: Bundle?): View? {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        navC= Navigation.findNavController(view)
+        view.findViewById<Button>(R.id.getStarted)?.setOnClickListener(this)
+    }
 
-        val binding = FragmentMainBinding.inflate(inflater)
-
-
-        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.lifecycleOwner = this
-
-        // Giving the binding access to the OverviewViewModel
-        binding.viewModel = viewModel
-
-        //setup adapter
-        binding.recyclerView.adapter = CourseAdapter()
-
-        //API CALL
-        viewModel.getClassroomCourses()
-
-        return binding.root
+    override fun onClick(v:View?){
+        navC?.navigate(R.id.action_mainFragment_to_classroom)
     }
 }
