@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/Classroom"
+        android:id="@id/classroom"
         android:title="Classroom"
         android:icon="@drawable/ic_classroom_24"/>
     <item
-        android:id="@+id/Schedule"
+        android:id="@id/schedule"
         android:title="Schedule"
         android:icon="@drawable/ic_schedule_24"/>
     <item
         android:id="@+id/placeholder"
         android:title="" />
     <item
-        android:id="@+id/Assignments"
+        android:id="@id/assignment"
         android:title="Assignments"
         android:icon="@drawable/ic_assignment_24"/>
     <item
-        android:id="@+id/Email"
+        android:id="@id/email"
         android:title="Email"
         android:icon="@drawable/ic_email_24"/>
 
