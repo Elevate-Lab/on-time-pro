@@ -30,6 +30,22 @@
           }
         },
         {
+          "client_id": "770229005978-j30ukhmvldtem6ncgojbnr6g0m0aof0r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gdsciiita.ontimepro",
+            "certificate_hash": "1c0b10a6412e4b3ed59999700a49b10c96376d30"
+          }
+        },
+        {
+          "client_id": "770229005978-uojkcgp45uort4snspa46rf0j5jinski.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gdsciiita.ontimepro",
+            "certificate_hash": "423c508c2e7fc5a333ce47486ae2b581ea50fdff"
+          }
+        },
+        {
           "client_id": "770229005978-tee7riokk1nn0qg1udlp1musa3o67pul.apps.googleusercontent.com",
           "client_type": 3
         }

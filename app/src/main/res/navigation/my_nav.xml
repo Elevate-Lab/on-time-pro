@@ -10,7 +10,18 @@
         android:name="com.gdsciiita.ontimepro.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
-
+        <action
+            android:id="@+id/action_mainFragment_to_classroom"
+            app:destination="@id/classroom" />
+        <action
+            android:id="@+id/action_mainFragment_to_schedule"
+            app:destination="@id/schedule" />
+        <action
+            android:id="@+id/action_mainFragment_to_assignment"
+            app:destination="@id/assignment" />
+        <action
+            android:id="@+id/action_mainFragment_to_email"
+            app:destination="@id/email" />
     </fragment>
 
     <fragment
@@ -24,5 +35,27 @@
             app:popUpTo="@+id/splashScreenFragment"
             app:popUpToInclusive="true"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/schedule"
+        android:name="com.gdsciiita.ontimepro.fragments.ScheduleFragment"
+        android:label="fragment_schedule"
+        tools:layout="@layout/fragment_schedule" />
+    <fragment
+        android:id="@+id/assignment"
+        android:name="com.gdsciiita.ontimepro.fragments.AssignmentsFragment"
+        android:label="fragment_assignment"
+        tools:layout="@layout/fragment_assignments" />
+    <fragment
+        android:id="@+id/email"
+        android:name="com.gdsciiita.ontimepro.fragments.EmailAttachFragment"
+        android:label="fragment_email"
+        tools:layout="@layout/fragment_email_attach" />
+    <fragment
+        android:id="@+id/classroom"
+        android:name="com.gdsciiita.ontimepro.fragments.ClassroomFragment"
+        android:label="fragment_classroom"
+        tools:layout="@layout/fragment_classroom" />
+
 
 </navigation>
