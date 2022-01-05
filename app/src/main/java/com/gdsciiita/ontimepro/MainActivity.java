@@ -18,12 +18,14 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
     NavController navController;
     private Toolbar toolbar;
     private BottomNavigationView bottomNavigationView;
+    private FloatingActionButton fab;
     private AppBarConfiguration appBarConfiguration;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle Toggle;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(intent);
 
         bottomNavigationView = findViewById(R.id.bottomNav);
+        fab=findViewById(R.id.floatingButton);
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         //NavigationUI.setupActionBarWithNavController(this, navController);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
@@ -56,9 +59,11 @@ public class MainActivity extends AppCompatActivity {
                 if(destination.getId() == R.id.splashScreenFragment || destination.getId() == R.id.mainFragment) {
                     toolbar.setVisibility(View.GONE);
                     bottomNavigationView.setVisibility(View.GONE);
+                    fab.setVisibility(View.GONE);
                 } else {
                     toolbar.setVisibility(View.VISIBLE);
                     bottomNavigationView.setVisibility(View.VISIBLE);
+                    fab.setVisibility(View.VISIBLE);
                 }
             }
         });
