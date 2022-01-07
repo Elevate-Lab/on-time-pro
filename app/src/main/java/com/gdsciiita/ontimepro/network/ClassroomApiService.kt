@@ -1,5 +1,6 @@
 package com.gdsciiita.ontimepro.network
 
+import com.gdsciiita.ontimepro.classes.AssignmentResponse
 import com.gdsciiita.ontimepro.classes.CourseResponse
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -30,6 +31,11 @@ interface ClassroomApiService {
                            @Query("courseStates") courseState: String,
                            @Query("pageSize") pageSize: Int,
                            @Query("studentId") email: String): CourseResponse
+
+    @GET("v1/courses.courseWork")
+    suspend fun getCourseWork(@Header("Authorization") authToken: String,
+                              @Query("courseWorkStates") courseWorkState:String,
+                              @Query("pageSize") pageSize: Int) : AssignmentResponse
 }
 
 //singleton object declaration

@@ -1,68 +1,19 @@
 package com.gdsciiita.ontimepro.classes
 
-class Assignment {
-    private var date:String?=null
-    private var status:String?=null
-    private var subject:String?=null
-    private var submissionDay:String?=null
-    private var submissionTime:String?=null
-    private var maxPoints:Int = 0
-    private var pointsReceived:Int=0
-
-    fun getPointsReceived(): Int {
-        return pointsReceived
-    }
-
-    fun setPointsReceived(points: Int) {
-        pointsReceived = points
-    }
-
-    fun getMaxPoints(): Int {
-        return maxPoints
-    }
-
-    fun setMaxPoints(points: Int) {
-        maxPoints = points
-    }
-
-    fun getDate(): String? {
-        return date
-    }
-
-    fun setDate(Date: String) {
-        date = Date
-    }
-
-    fun getStatus(): String? {
-        return status
-    }
-
-    fun setStatus(Status: String) {
-        status = Status
-    }
-
-    fun getSubject(): String? {
-        return subject
-    }
-
-    fun setSubject(courseName: String) {
-        subject = courseName
-    }
-
-    fun getSubmissionDay(): String? {
-        return submissionDay
-    }
-
-    fun setSubmissionDay(SubmissionDay: String) {
-        submissionDay = SubmissionDay
-    }
-
-    fun getSubmissionTime(): String? {
-        return submissionTime
-    }
-
-    fun setSubmissionTime(SubmissionTime: String) {
-        submissionTime = SubmissionTime
-    }
-
-}
+data class Assignment (
+    val courseId:String,
+    val id:String,
+    val creatorUserId:String,
+    val alternateLink: String,
+    val title:String?,
+    var workType:String?,
+    var date:String?,
+    var state:String?,
+    val subject:String?,
+    var submissionDay:String?,
+    var creationTime:String?,
+    var updateTime:String?,
+    var submissionTime:String?,
+    var maxPoints:Int = 0,
+    var pointsReceived:Int=0
+)

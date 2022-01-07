@@ -5,7 +5,9 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gdsciiita.ontimepro.R
+import com.gdsciiita.ontimepro.adapters.AssignmentAdapter
 import com.gdsciiita.ontimepro.adapters.CourseAdapter
+import com.gdsciiita.ontimepro.classes.Assignment
 import com.gdsciiita.ontimepro.classes.Course
 import com.gdsciiita.ontimepro.viewModels.ClassroomApiStatus
 
@@ -20,7 +22,12 @@ fun bindRecyclerView(recyclerView: RecyclerView,
     adapter.submitList(data)
 }
 
-
+@BindingAdapter("list")
+fun bindingRecyclerView(recyclerView: RecyclerView,
+                     data: List<Assignment>?) {
+    val adapter = recyclerView.adapter as AssignmentAdapter
+    adapter.submitList(data)
+}
 
 //bind to status imageView in fragment_overview
 @BindingAdapter("classroomApiStatus")

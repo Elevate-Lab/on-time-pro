@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gdsciiita.ontimepro.classes.Assignment
 import com.gdsciiita.ontimepro.classes.Course
 import com.gdsciiita.ontimepro.classes.User
 import com.gdsciiita.ontimepro.network.ClassroomApi
@@ -19,12 +20,13 @@ class MainViewModel : ViewModel() {
     // The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<ClassroomApiStatus>()
     private val _courses = MutableLiveData<List<Course>>()
+    private val _courseWorks=MutableLiveData<List<Assignment>>()
 
 
     // The external immutable LiveData for the request status
     val status: LiveData<ClassroomApiStatus> = _status
     val courses: LiveData<List<Course>> = _courses
-
+    val courseWorks: LiveData<List<Assignment>> = _courseWorks
 
     /**
      * Gets Classroom courses information from the Classroom API Retrofit service and updates the
@@ -53,4 +55,23 @@ class MainViewModel : ViewModel() {
             }
         }
     }
+
+    fun getClassroomCourseWork(){
+        viewModelScope.launch {
+            _status.value = ClassroomApiStatus.LOADING
+            try{
+                Log.d(TAG,"GETTING COURSEWORK")
+                val assignmentList=ClassroomApi.retrofitService
+                    .getCourseWork(User.authToken,"PUBLISHED",10).assignmentList
+
+                _courseWorks.value = assignmentList
+                _status.value = ClassroomApiStatus.DONE
+            } catch (e:Exception){
+                e.message?.let { Log.e("WRONG", it) }
+                _status.value = ClassroomApiStatus.ERROR
+                _courseWorks.value = listOf()
+            }
+        }
+    }
+
 }
