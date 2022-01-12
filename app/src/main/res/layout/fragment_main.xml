@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:padding="8dp"
     android:background="@drawable/unsplash"
-    tools:context=".fragments.MainFragment">
+    tools:context=".fragments.onboarding.MainFragment">
 
     <TextView
         android:id="@+id/heading"

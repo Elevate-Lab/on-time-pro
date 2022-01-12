@@ -33,5 +33,14 @@
             android:layout_centerInParent="true"
             app:classroomApiStatus="@{viewModel.status}" />
 
+        <TextView
+            android:id="@+id/error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="@{viewModel.error}"
+            android:layout_centerInParent="true"
+            android:textColor="@color/black"/>
+
     </RelativeLayout>
 </layout>

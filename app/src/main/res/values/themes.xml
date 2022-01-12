@@ -13,4 +13,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="fontFamily">@font/montserrat</item>
     </style>
+
+
+    <style name="SplashTheme" parent="Theme.Ontimepro">
+        <item name="android:windowBackground">@drawable/splash_drawable</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 </resources>

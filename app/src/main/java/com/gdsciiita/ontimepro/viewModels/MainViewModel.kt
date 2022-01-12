@@ -19,11 +19,13 @@ class MainViewModel : ViewModel() {
     // The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<ClassroomApiStatus>()
     private val _courses = MutableLiveData<List<Course>>()
+    private val _error = MutableLiveData<String>()
 
 
     // The external immutable LiveData for the request status
     val status: LiveData<ClassroomApiStatus> = _status
     val courses: LiveData<List<Course>> = _courses
+    val error: LiveData<String> = _error
 
 
     /**
@@ -47,6 +49,7 @@ class MainViewModel : ViewModel() {
                 _status.value = ClassroomApiStatus.DONE
 
             } catch (e: Exception) {
+                _error.value = e.message
                 e.message?.let { Log.e("WRONG", it) }
                 _status.value = ClassroomApiStatus.ERROR
                 _courses.value = listOf()
