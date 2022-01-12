@@ -3,59 +3,68 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/splashScreenFragment">
-
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.gdsciiita.ontimepro.fragments.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_mainFragment_to_classroom"
-            app:destination="@id/classroom" />
-        <action
-            android:id="@+id/action_mainFragment_to_schedule"
-            app:destination="@id/schedule" />
-        <action
-            android:id="@+id/action_mainFragment_to_assignment"
-            app:destination="@id/assignment" />
-        <action
-            android:id="@+id/action_mainFragment_to_email"
-            app:destination="@id/email" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/splashScreenFragment"
-        android:name="com.gdsciiita.ontimepro.fragments.SplashScreenFragment"
-        android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" >
-        <action
-            android:id="@+id/action_splashScreenFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:popUpTo="@+id/splashScreenFragment"
-            app:popUpToInclusive="true"/>
-    </fragment>
+    app:startDestination="@id/classroom">
 
     <fragment
         android:id="@+id/schedule"
         android:name="com.gdsciiita.ontimepro.fragments.ScheduleFragment"
         android:label="fragment_schedule"
-        tools:layout="@layout/fragment_schedule" />
+        tools:layout="@layout/fragment_schedule" >
+        <action
+            android:id="@+id/action_schedule_to_email"
+            app:destination="@id/email" />
+        <action
+            android:id="@+id/action_schedule_to_assignment"
+            app:destination="@id/assignment" />
+        <action
+            android:id="@+id/action_schedule_to_classroom"
+            app:destination="@id/classroom" />
+    </fragment>
     <fragment
         android:id="@+id/assignment"
         android:name="com.gdsciiita.ontimepro.fragments.AssignmentsFragment"
         android:label="fragment_assignment"
-        tools:layout="@layout/fragment_assignments" />
+        tools:layout="@layout/fragment_assignments" >
+        <action
+            android:id="@+id/action_assignment_to_email"
+            app:destination="@id/email" />
+        <action
+            android:id="@+id/action_assignment_to_classroom"
+            app:destination="@id/classroom" />
+        <action
+            android:id="@+id/action_assignment_to_schedule"
+            app:destination="@id/schedule" />
+    </fragment>
     <fragment
         android:id="@+id/email"
         android:name="com.gdsciiita.ontimepro.fragments.EmailAttachFragment"
         android:label="fragment_email"
-        tools:layout="@layout/fragment_email_attach" />
+        tools:layout="@layout/fragment_email_attach" >
+        <action
+            android:id="@+id/action_email_to_assignment"
+            app:destination="@id/assignment" />
+        <action
+            android:id="@+id/action_email_to_schedule"
+            app:destination="@id/schedule" />
+        <action
+            android:id="@+id/action_email_to_classroom"
+            app:destination="@id/classroom" />
+    </fragment>
     <fragment
         android:id="@+id/classroom"
         android:name="com.gdsciiita.ontimepro.fragments.ClassroomFragment"
         android:label="fragment_classroom"
-        tools:layout="@layout/fragment_classroom" />
+        tools:layout="@layout/fragment_classroom" >
+        <action
+            android:id="@+id/action_classroom_to_schedule"
+            app:destination="@id/schedule" />
+        <action
+            android:id="@+id/action_classroom_to_email"
+            app:destination="@id/email" />
+        <action
+            android:id="@+id/action_classroom_to_assignment"
+            app:destination="@id/assignment" />
+    </fragment>
 
 
 </navigation>

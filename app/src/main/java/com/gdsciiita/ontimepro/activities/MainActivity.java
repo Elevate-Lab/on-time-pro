@@ -1,14 +1,13 @@
 package com.gdsciiita.ontimepro.activities;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import static androidx.navigation.ui.NavigationUI.setupWithNavController;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
-import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import android.content.Intent;
@@ -17,7 +16,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.gdsciiita.ontimepro.GoogleSignInObject;
 import com.gdsciiita.ontimepro.R;
@@ -32,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private BottomNavigationView bottomNavigationView;
     private FloatingActionButton fab;
-    private AppBarConfiguration appBarConfiguration;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle Toggle;
 
@@ -51,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = binding.bottomNav;
         fab = binding.floatingButton;
 
-        navController = Navigation.findNavController(this, R.id.fragmentContainerView);
-        //NavigationUI.setupActionBarWithNavController(this, navController);
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
+        navController = navHostFragment.getNavController();
+        setupWithNavController(binding.bottomNav, navController);
 
         drawerLayout=findViewById(R.id.drawerLayout);
         Toggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
@@ -63,22 +60,6 @@ public class MainActivity extends AppCompatActivity {
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
-
-        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
-            @Override
-            public void onDestinationChanged(@NonNull NavController controller,
-                                             @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                if(destination.getId() == R.id.splashScreenFragment || destination.getId() == R.id.mainFragment) {
-                    toolbar.setVisibility(View.GONE);
-                    bottomNavigationView.setVisibility(View.GONE);
-                    fab.setVisibility(View.GONE);
-                } else {
-                    toolbar.setVisibility(View.VISIBLE);
-                    bottomNavigationView.setVisibility(View.VISIBLE);
-                    fab.setVisibility(View.VISIBLE);
-                }
-            }
-        });
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {

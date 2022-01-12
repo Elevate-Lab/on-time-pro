@@ -34,12 +34,7 @@ public class ProfileActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
 
         logout = findViewById(R.id.logOut);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signOut();
-            }
-        });
+        logout.setOnClickListener(view -> signOut());
 
         getAuthToken();
     }
@@ -57,16 +52,13 @@ public class ProfileActivity extends AppCompatActivity {
                 }
             };
 
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        String scope = "oauth2:" + getString(R.string.auth_scope);
-                        authToken = GoogleAuthUtil.getToken(getApplicationContext(), currentUser.getEmail(), scope, new Bundle());
-                        h.sendEmptyMessage(0);
-                    } catch (IOException | GoogleAuthException e) {
-                        e.printStackTrace();
-                    }
+            Runnable runnable = () -> {
+                try {
+                    String scope = "oauth2:" + getString(R.string.auth_scope);
+                    authToken = GoogleAuthUtil.getToken(getApplicationContext(), currentUser.getEmail(), scope, new Bundle());
+                    h.sendEmptyMessage(0);
+                } catch (IOException | GoogleAuthException e) {
+                    e.printStackTrace();
                 }
             };
 

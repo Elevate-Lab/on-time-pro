@@ -30,7 +30,7 @@ class ClassroomFragment : Fragment() {
         binding.recyclerView.adapter = CourseAdapter()
 
         //API CALL
-        //viewModel.getClassroomCourses()
+        viewModel.getClassroomCourses()
 
         return binding.root
     }
