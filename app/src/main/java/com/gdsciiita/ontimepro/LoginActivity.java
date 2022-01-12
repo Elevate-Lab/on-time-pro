@@ -1,7 +1,5 @@
 package com.gdsciiita.ontimepro;
 
-import static android.content.ContentValues.TAG;
-
 import static androidx.core.content.PackageManagerCompat.LOG_TAG;
 
 import androidx.annotation.NonNull;
@@ -46,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     private static int RC_SIGN_IN = 100;
     private FirebaseAuth mAuth;
+    private String TAG = "SPECIAL_TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +53,11 @@ public class LoginActivity extends AppCompatActivity {
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions
-                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestServerAuthCode(getString(R.string.default_web_client_id))
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-
-
         mAuth = FirebaseAuth.getInstance();
+
+
         // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        mGoogleSignInClient = GoogleSignInObject.Companion.getSignInClient(this);
 
         // Set the dimensions of the sign-in button.
         SignInButton signInButton = findViewById(R.id.sign_in_button);
@@ -95,9 +88,10 @@ public class LoginActivity extends AppCompatActivity {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account.getIdToken());
+                Log.d(TAG, "Sign In Success");
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e);
+                Log.d(TAG, "Google sign in failed", e);
             }
 
         }
@@ -116,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                             getAuthToken(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Log.d(TAG, "signInWithCredential:failure", task.getException());
                             updateUI(null);
                         }
                     }
@@ -126,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
     private void getAuthToken(FirebaseUser currentUser){
         if(currentUser!=null) {
             Runnable runnable = () -> {
+                Log.d(TAG, "Getting Auth Token");
                 try {
                     String scope = "oauth2:" + getString(R.string.auth_scope);
                     Account accountDetails = new Account(currentUser.getEmail(), GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE);
@@ -135,7 +130,9 @@ public class LoginActivity extends AppCompatActivity {
                     User.userEmail = currentUser.getEmail();
                     Log.i(TAG, User.userEmail+" "+User.authToken);
                     updateUI(currentUser);
+                    Log.d(TAG, "Received Auth Token");
                 } catch (IOException | GoogleAuthException e) {
+                    Log.d(TAG, "Error auth token");
                     e.printStackTrace();
                 }
             };

@@ -10,15 +10,20 @@ import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.gdsciiita.ontimepro.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,24 +35,30 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle Toggle;
 
+    private ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(LayoutInflater.from(this));
+        setContentView(binding.getRoot());
 
 //        for login testing
 //        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
 //        startActivity(intent);
 
-        bottomNavigationView = findViewById(R.id.bottomNav);
-        fab=findViewById(R.id.floatingButton);
+        bottomNavigationView = binding.bottomNav;
+        fab = binding.floatingButton;
+
         navController = Navigation.findNavController(this, R.id.fragmentContainerView);
         //NavigationUI.setupActionBarWithNavController(this, navController);
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
+
         drawerLayout=findViewById(R.id.drawerLayout);
         Toggle=new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(Toggle);
         Toggle.syncState();
+
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
@@ -71,7 +82,17 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        //TODO: Setup actions
+        if(item.getItemId() == R.id.Notifications){
+            FirebaseAuth.getInstance().signOut();
+            GoogleSignInObject.Companion.getSignInClient(this).signOut();
+            startActivity(new Intent(this, LoginActivity.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            finish();
+        }
+
         if(Toggle.onOptionsItemSelected(item)) {
+
             return true;
         }
         return super.onOptionsItemSelected(item);
