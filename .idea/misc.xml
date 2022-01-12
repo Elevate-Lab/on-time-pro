@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/on-time-pro-forked/app/src/main/res/drawable-v24/splash_background.xml" value="0.25833333333333336" />
+        <entry key="..\:/AndroidStudioProjects/on-time-pro-forked/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.25833333333333336" />
+        <entry key="..\:/AndroidStudioProjects/on-time-pro-forked/app/src/main/res/drawable/splash_drawable.xml" value="0.25833333333333336" />
+        <entry key="..\:/AndroidStudioProjects/on-time-pro-forked/app/src/main/res/layout/activity_login.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/on-time-pro-forked/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/on-time-pro-forked/app/src/main/res/layout/activity_splash.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/on-time-pro-forked/app/src/main/res/layout/appbar.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/on-time-pro-forked/app/src/main/res/layout/fragment_classroom.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/on-time-pro-forked/app/src/main/res/layout/fragment_schedule.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/on-time-pro-forked/app/src/main/res/layout/fragment_splash_screen.xml" value="0.2421875" />
+        <entry key="..\:/AndroidStudioProjects/on-time-pro-forked/app/src/main/res/menu/menu.xml" value="0.2421875" />
         <entry key="..\:/App/on-time-pro/app/src/main/res/drawable/background_transparent.xml" value="0.17395833333333333" />
         <entry key="..\:/App/on-time-pro/app/src/main/res/drawable/ic_assignment_24.xml" value="0.14814814814814814" />
         <entry key="..\:/App/on-time-pro/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.17395833333333333" />
