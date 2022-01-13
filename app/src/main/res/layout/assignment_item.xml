@@ -1,105 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="4dp">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <data>
+        <variable
+            name="viewModel"
+            type="com.gdsciiita.ontimepro.viewModels.MainViewModel" />
+
+        <variable
+            name="assignment"
+            type="com.gdsciiita.ontimepro.classes.Assignment" />
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp"
-        android:layout_margin="15dp">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp">
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date:16/12/21"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="Status"
-            android:textColor="@color/teal_200"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/subject"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/date"
-            android:text="DSA"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/pointsReceived"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/status"
-            android:layout_marginTop="1dp"
-            android:layout_toLeftOf="@+id/maxPoints"
-            android:text="90"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/maxPoints"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/status"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="1dp"
-            android:text=" / 100"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/submissionDay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/subject"
-            android:text="Submission Day : 27/12/21"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/submissionTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/submissionDay"
-            android:text="Submission Time : 11:59:00"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_below="@+id/submissionTime"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:layout_margin="15dp">
 
-            <Button
-                android:id="@+id/addAssign"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="+ Add work"
-                android:textAllCaps="false"/>
+                android:text="Date:16/12/21"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
 
-            <Button
-                android:id="@+id/markDone"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mark as done"
-                android:layout_marginLeft="8dp"
-                android:textAllCaps="false"/>
+                android:layout_alignParentRight="true"
+                android:text="Status"
+                android:textColor="@color/teal_200"
+                android:textSize="18sp" />
 
-        </LinearLayout>
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/subject"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/date"
+                android:text="@{assignment.title}"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
 
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/pointsReceived"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/status"
+                android:layout_marginTop="1dp"
+                android:layout_toLeftOf="@+id/maxPoints"
+                android:text="90"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/maxPoints"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/status"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="1dp"
+                android:text=" / 100"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/submissionDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/subject"
+                android:text="Submission Day : 27/12/21"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/submissionTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/submissionDay"
+                android:text="Submission Time : 11:59:00"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/submissionTime"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/addAssign"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="+ Add work"
+                    android:textAllCaps="false" />
+
+                <Button
+                    android:id="@+id/markDone"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Mark as done"
+                    android:layout_marginLeft="8dp"
+                    android:textAllCaps="false" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
