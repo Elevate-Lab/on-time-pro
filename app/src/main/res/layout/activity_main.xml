@@ -25,6 +25,7 @@
             android:layout_centerHorizontal="true"
             app:defaultNavHost="true"
             android:layout_above="@id/floatingButton"
+            android:layout_marginBottom="?actionBarSize"
             app:navGraph="@navigation/my_nav" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
