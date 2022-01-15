@@ -6,6 +6,7 @@ import android.accounts.Account;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 
@@ -27,6 +28,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -136,10 +139,11 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected FirebaseUser doInBackground(FirebaseUser... values) {
             FirebaseUser currentUser = values[0];
-            String scope = "oauth2:" + getString(R.string.auth_scope);
+            List<String> Scopes = Arrays.asList(getResources().getStringArray(R.array.auth_scopes));
+            String authScope = "oauth2:" + TextUtils.join(" ", Scopes);
             Account accountDetails = new Account(currentUser.getEmail(), GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE);
             try {
-                User.authToken = "Bearer "+ GoogleAuthUtil.getToken(getApplicationContext(), accountDetails, scope, new Bundle());
+                User.authToken = "Bearer "+ GoogleAuthUtil.getToken(getApplicationContext(), accountDetails, authScope, new Bundle());
             } catch (IOException | GoogleAuthException e) {
                 e.printStackTrace();
             }

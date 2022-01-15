@@ -69,7 +69,7 @@ class MainViewModel : ViewModel() {
             try{
                 Log.d(TAG,"GETTING COURSEWORK")
                 val assignmentList=ClassroomApi.retrofitService
-                    .getCourseWork(User.authToken,"PUBLISHED",10).assignmentList
+                    .getCourseWork(User.authToken, "251218975786","PUBLISHED",10).assignmentList
 
                 _courseWorks.value = assignmentList
                 _status.value = ClassroomApiStatus.DONE

@@ -9,20 +9,19 @@
             type="com.gdsciiita.ontimepro.viewModels.MainViewModel" />
     </data>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         tools:context=".fragments.AssignmentsFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:layout_margin="16dp"
-            android:layout_marginVertical="16dp"
+            android:padding="6dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:list="@{viewModel.courseWorks}"
+            tools:listitem="@layout/assignment_item"
             android:scrollbars="vertical">
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -34,5 +33,5 @@
             android:layout_centerInParent="true"
             app:classroomApiStatus="@{viewModel.status}" />
 
-    </FrameLayout>
+    </RelativeLayout>
 </layout>

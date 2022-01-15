@@ -4,6 +4,13 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="web_client_id">770229005978-8l8avcpdlqgs45evueov4d51et4nlmiq.apps.googleusercontent.com</string>
-    <string name="auth_scope">https://www.googleapis.com/auth/classroom.courses</string>
+    <string name="web_client_id">770229005978-tee7riokk1nn0qg1udlp1musa3o67pul.apps.googleusercontent.com</string>
+    <string name="nodue">No due date</string>
+
+    <string-array name="auth_scopes">
+        <item>https://www.googleapis.com/auth/classroom.courses</item>
+        <item>https://www.googleapis.com/auth/classroom.coursework.students</item>
+        <item>https://www.googleapis.com/auth/classroom.coursework.me</item>
+    </string-array>
+
 </resources>

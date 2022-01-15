@@ -8,6 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 private val BASE_URL =
@@ -32,9 +33,11 @@ interface ClassroomApiService {
                            @Query("pageSize") pageSize: Int,
                            @Query("studentId") email: String): CourseResponse
 
-    @GET("v1/courses.courseWork")
+
+    @GET("/v1/courses/{courseId}/courseWork")
     suspend fun getCourseWork(@Header("Authorization") authToken: String,
-                              @Query("courseWorkStates") courseWorkState:String,
+                              @Path("courseId") courseId: String,
+                              @Query("courseWorkStates") courseWorkState: String,
                               @Query("pageSize") pageSize: Int) : AssignmentResponse
 }
 

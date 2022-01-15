@@ -36,35 +36,35 @@ public class ProfileActivity extends AppCompatActivity {
         logout = findViewById(R.id.logOut);
         logout.setOnClickListener(view -> signOut());
 
-        getAuthToken();
+//        getAuthToken();
     }
 
 
-    private void getAuthToken(){
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(currentUser!=null) {
-            Handler h = new Handler() {
-                @Override
-                public void handleMessage(Message msg) {
-                    if (msg.what == 0) {
-                        name.setText(authToken);
-                    }
-                }
-            };
-
-            Runnable runnable = () -> {
-                try {
-                    String scope = "oauth2:" + getString(R.string.auth_scope);
-                    authToken = GoogleAuthUtil.getToken(getApplicationContext(), currentUser.getEmail(), scope, new Bundle());
-                    h.sendEmptyMessage(0);
-                } catch (IOException | GoogleAuthException e) {
-                    e.printStackTrace();
-                }
-            };
-
-            AsyncTask.execute(runnable);
-        }
-    }
+//    private void getAuthToken(){
+//        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+//        if(currentUser!=null) {
+//            Handler h = new Handler() {
+//                @Override
+//                public void handleMessage(Message msg) {
+//                    if (msg.what == 0) {
+//                        name.setText(authToken);
+//                    }
+//                }
+//            };
+//
+//            Runnable runnable = () -> {
+//                try {
+//                    String scope = "oauth2:" + getString(R.string.auth_scope);
+//                    authToken = GoogleAuthUtil.getToken(getApplicationContext(), currentUser.getEmail(), scope, new Bundle());
+//                    h.sendEmptyMessage(0);
+//                } catch (IOException | GoogleAuthException e) {
+//                    e.printStackTrace();
+//                }
+//            };
+//
+//            AsyncTask.execute(runnable);
+//        }
+//    }
 
     private void signOut() {
         FirebaseAuth.getInstance().signOut();
