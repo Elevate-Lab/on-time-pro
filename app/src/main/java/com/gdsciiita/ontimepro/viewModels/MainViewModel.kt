@@ -68,6 +68,7 @@ class MainViewModel : ViewModel() {
             _status.value = ClassroomApiStatus.LOADING
             try{
                 Log.d(TAG,"GETTING COURSEWORK")
+                //TODO: Replace courseId with your course
                 val assignmentList=ClassroomApi.retrofitService
                     .getCourseWork(User.authToken, "251218975786","PUBLISHED",10).assignmentList
 
