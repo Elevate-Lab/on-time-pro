@@ -5,14 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import com.gdsciiita.ontimepro.BaseApplication
 import com.gdsciiita.ontimepro.adapters.CourseAdapter
 import com.gdsciiita.ontimepro.databinding.FragmentClassroomBinding
+import com.gdsciiita.ontimepro.viewModels.CourseViewModelFactory
 import com.gdsciiita.ontimepro.viewModels.MainViewModel
 
 class ClassroomFragment : Fragment() {
 
-    private val viewModel: MainViewModel by viewModels()
+    private val viewModel: MainViewModel by activityViewModels {
+        CourseViewModelFactory(
+            (activity?.application as BaseApplication).database.courseDao()
+        )
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                                 savedInstanceState: Bundle?): View? {

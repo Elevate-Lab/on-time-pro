@@ -1,6 +1,12 @@
 package com.gdsciiita.ontimepro.classes
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "courseList")
 data class Course(
+    @PrimaryKey
+    val id: String,
     val alternateLink: String,
     val calendarId: String,
     val courseGroupEmail: String?,
@@ -8,7 +14,6 @@ data class Course(
     val creationTime: String?,
     val descriptionHeading: String?,
     val guardiansEnabled: Boolean?,
-    val id: String,
     val name: String,
     var facultyName: String?,
     var classType: String?,

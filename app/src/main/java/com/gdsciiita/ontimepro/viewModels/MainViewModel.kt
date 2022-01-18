@@ -2,20 +2,21 @@ package com.gdsciiita.ontimepro.viewModels
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.gdsciiita.ontimepro.classes.Assignment
 import com.gdsciiita.ontimepro.classes.Course
 import com.gdsciiita.ontimepro.classes.User
+import com.gdsciiita.ontimepro.data.CourseDao
+import com.gdsciiita.ontimepro.data.CourseDatabase
 import com.gdsciiita.ontimepro.network.ClassroomApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 enum class ClassroomApiStatus { LOADING, ERROR, DONE }
 
 
-class MainViewModel : ViewModel() {
+class MainViewModel(private val courseDao: CourseDao) : ViewModel() {
+
 
     // The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<ClassroomApiStatus>()
@@ -23,7 +24,6 @@ class MainViewModel : ViewModel() {
 
     private val _courseWorks=MutableLiveData<List<Assignment>>()
     private val _error = MutableLiveData<String>()
-
 
 
     // The external immutable LiveData for the request status
@@ -54,6 +54,10 @@ class MainViewModel : ViewModel() {
                 _courses.value = courseList
                 _status.value = ClassroomApiStatus.DONE
 
+                viewModelScope.launch {
+                    courseDao.addCourses(courseList)
+                }
+
             } catch (e: Exception) {
                 _error.value = e.message
                 e.message?.let { Log.e("WRONG", it) }
@@ -82,4 +86,13 @@ class MainViewModel : ViewModel() {
         }
     }
 
+}
+class CourseViewModelFactory(private val courseDao: CourseDao) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return MainViewModel(courseDao) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }
