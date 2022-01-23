@@ -6,14 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.coroutineScope
 import com.gdsciiita.ontimepro.BaseApplication
 import com.gdsciiita.ontimepro.adapters.CourseAdapter
 import com.gdsciiita.ontimepro.databinding.FragmentClassroomBinding
 import com.gdsciiita.ontimepro.viewModels.CourseViewModelFactory
 import com.gdsciiita.ontimepro.viewModels.MainViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+
 
 class ClassroomFragment : Fragment() {
+
+    private var _binding: FragmentClassroomBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: MainViewModel by activityViewModels {
         CourseViewModelFactory(
@@ -21,12 +27,24 @@ class ClassroomFragment : Fragment() {
         )
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                                savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
 
-        val binding = FragmentClassroomBinding.inflate(inflater)
+        _binding = FragmentClassroomBinding.inflate(inflater)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val courseAdapter = CourseAdapter{}
 
+        lifecycle.coroutineScope.launch {
+            viewModel.allCourses().collect {
+                courseAdapter.submitList(it)
+            }
+        }
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this
 
@@ -34,11 +52,13 @@ class ClassroomFragment : Fragment() {
         binding.viewModel = viewModel
 
         //setup adapter
-        binding.recyclerView.adapter = CourseAdapter()
+        binding.recyclerView.adapter = CourseAdapter{}
 
-        //API CALL
         viewModel.getClassroomCourses()
+    }
 
-        return binding.root
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

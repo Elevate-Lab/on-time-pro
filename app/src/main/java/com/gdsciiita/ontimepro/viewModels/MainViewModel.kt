@@ -17,6 +17,7 @@ enum class ClassroomApiStatus { LOADING, ERROR, DONE }
 
 class MainViewModel(private val courseDao: CourseDao) : ViewModel() {
 
+    fun allCourses() : Flow<List<Course>> = courseDao.getCourses()
 
     // The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<ClassroomApiStatus>()

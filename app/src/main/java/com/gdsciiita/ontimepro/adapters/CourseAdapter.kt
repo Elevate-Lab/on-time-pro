@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gdsciiita.ontimepro.classes.Course
 import com.gdsciiita.ontimepro.databinding.CourseItemBinding
 
-class CourseAdapter : ListAdapter<Course, CourseAdapter.CourseViewHolder>(DiffCallback) {
+class CourseAdapter(private val onCourseClicked: (Course) -> Unit) : ListAdapter<Course, CourseAdapter.CourseViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Course>() {
         override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean {
