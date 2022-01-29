@@ -14,10 +14,13 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface CourseDao {
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addCourses(courses:List<Course>)
 
-    @Query("SELECT * from courseList")
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insert(courses: Course)
+
+    @Query("SELECT * from courseList ORDER BY name")
     fun getCourses(): Flow<List<Course>>
 
 }

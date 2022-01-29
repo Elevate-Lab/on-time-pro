@@ -19,13 +19,6 @@ import java.util.*
 //Binding Adapters are annotated methods used to create custom setters for custom properties of your view.
 
 
-//bind to recyclerView in fragment_overview
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView,
-                     data: List<Course>?) {
-    val adapter = recyclerView.adapter as CourseAdapter
-    adapter.submitList(data)
-}
 
 @BindingAdapter("list")
 fun bindingRecyclerView(recyclerView: RecyclerView,

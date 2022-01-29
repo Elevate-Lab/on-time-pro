@@ -17,7 +17,7 @@ enum class ClassroomApiStatus { LOADING, ERROR, DONE }
 
 class MainViewModel(private val courseDao: CourseDao) : ViewModel() {
 
-    fun allCourses() : Flow<List<Course>> = courseDao.getCourses()
+    fun allCourses() : LiveData<List<Course>> = courseDao.getCourses().asLiveData()
 
     // The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<ClassroomApiStatus>()
@@ -34,7 +34,6 @@ class MainViewModel(private val courseDao: CourseDao) : ViewModel() {
     val courseWorks: LiveData<List<Assignment>> = _courseWorks
     val error: LiveData<String> = _error
 
-
     /**
      * Gets Classroom courses information from the Classroom API Retrofit service and updates the
      * [Course] [List] [LiveData].
@@ -42,9 +41,9 @@ class MainViewModel(private val courseDao: CourseDao) : ViewModel() {
     fun getClassroomCourses() {
         //coroutine scope for viewModel
         viewModelScope.launch {
-            _status.value = ClassroomApiStatus.LOADING
+//            _status.value = ClassroomApiStatus.LOADING
             try {
-                Log.d(TAG, "GETTING COURSES")
+               // Log.d(TAG, "GETTING COURSES")
                 val courseList =  ClassroomApi.retrofitService
                     .getCourses(User.authToken, "ACTIVE", 10, User.userEmail).courseList
                 //TODO: REMOVE TEST DATA
@@ -55,38 +54,48 @@ class MainViewModel(private val courseDao: CourseDao) : ViewModel() {
                 _courses.value = courseList
                 _status.value = ClassroomApiStatus.DONE
 
-                viewModelScope.launch {
-                    courseDao.addCourses(courseList)
-                }
+                addCourses(courseList)
 
             } catch (e: Exception) {
-                _error.value = e.message
-                e.message?.let { Log.e("WRONG", it) }
+               // _error.value = e.message
+                //e.message?.let { Log.e("WRONG", it) }
                 _status.value = ClassroomApiStatus.ERROR
                 _courses.value = listOf()
             }
         }
     }
 
-    fun getClassroomCourseWork(){
+    fun getClassroomCourseWork(courses: List<Course>?){
         viewModelScope.launch {
             _status.value = ClassroomApiStatus.LOADING
             try{
-                Log.d(TAG,"GETTING COURSEWORK")
-                //TODO: Replace courseId with your course
-                val assignmentList=ClassroomApi.retrofitService
-                    .getCourseWork(User.authToken, "251218975786","PUBLISHED",10).assignmentList
+                val assignmentList = mutableListOf<Assignment>()
 
+                //TODO: only show assignments which are due
+                if (courses != null) {
+                    for(course in courses)
+                        ClassroomApi.retrofitService
+                            .getCourseWork(User.authToken, course.id,"PUBLISHED",20).assignmentList?.let {
+                                Log.d(TAG,"${it.size} == ${assignmentList.size}")
+                                assignmentList.addAll(it)
+                            }
+                }
                 _courseWorks.value = assignmentList
                 _status.value = ClassroomApiStatus.DONE
             } catch (e:Exception){
-                e.message?.let { Log.e("WRONG", it) }
-                _status.value = ClassroomApiStatus.ERROR
+                //_status.value = ClassroomApiStatus.ERROR
                 _courseWorks.value = listOf()
             }
         }
     }
 
+
+    private fun addCourses(courses: List<Course>){
+        viewModelScope.launch {
+            for(course in courses)
+                courseDao.insert(course)
+        }
+    }
 }
 class CourseViewModelFactory(private val courseDao: CourseDao) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.gdsciiita.ontimepro.BaseApplication
 import com.gdsciiita.ontimepro.adapters.CourseAdapter
 import com.gdsciiita.ontimepro.databinding.FragmentClassroomBinding
@@ -21,10 +22,15 @@ class ClassroomFragment : Fragment() {
     private var _binding: FragmentClassroomBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MainViewModel by activityViewModels {
+    private val viewModel1: MainViewModel by activityViewModels {
         CourseViewModelFactory(
             (activity?.application as BaseApplication).database.courseDao()
         )
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel1.getClassroomCourses()
     }
 
     override fun onCreateView(
@@ -38,23 +44,28 @@ class ClassroomFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val courseAdapter = CourseAdapter{}
 
-        lifecycle.coroutineScope.launch {
-            viewModel.allCourses().collect {
+        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        binding.apply {
+            // Giving the binding access to the OverviewViewModel
+            viewModel = viewModel1
+
+            //setup adapter
+            recyclerView.adapter = courseAdapter
+
+            swipeLayout.setOnRefreshListener {
+                viewModel1.getClassroomCourses()
+                swipeLayout.isRefreshing = false;
+            }
+        }
+
+        viewModel1.allCourses().observe(this.viewLifecycleOwner) { items ->
+            items.let {
                 courseAdapter.submitList(it)
             }
         }
-        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
-        binding.lifecycleOwner = this
-
-        // Giving the binding access to the OverviewViewModel
-        binding.viewModel = viewModel
-
-        //setup adapter
-        binding.recyclerView.adapter = CourseAdapter{}
-
-        viewModel.getClassroomCourses()
     }
 
     override fun onDestroyView() {

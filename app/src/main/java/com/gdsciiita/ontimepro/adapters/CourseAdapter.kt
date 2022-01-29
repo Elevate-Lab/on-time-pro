@@ -12,11 +12,11 @@ class CourseAdapter(private val onCourseClicked: (Course) -> Unit) : ListAdapter
 
     companion object DiffCallback : DiffUtil.ItemCallback<Course>() {
         override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem == newItem
         }
 
         override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean {
-            return oldItem.classType == newItem.classType
+            return (oldItem.classType == newItem.classType)
         }
     }
 

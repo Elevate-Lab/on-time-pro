@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gdsciiita.ontimepro.classes.Assignment
+import com.gdsciiita.ontimepro.classes.Course
 import com.gdsciiita.ontimepro.databinding.AssignmentItemBinding
 
-class AssignmentAdapter: ListAdapter<Assignment, AssignmentAdapter.AssignmentViewHolder>(AssignmentAdapter) {
+class AssignmentAdapter(private val onAssignmentClicked: (Assignment) -> Unit): ListAdapter<Assignment, AssignmentAdapter.AssignmentViewHolder>(DiffCallback) {
 
     companion object DiffCallback : DiffUtil.ItemCallback<Assignment>() {
         override fun areItemsTheSame(oldItem: Assignment, newItem: Assignment): Boolean {
