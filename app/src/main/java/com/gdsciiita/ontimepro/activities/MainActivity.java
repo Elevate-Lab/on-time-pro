@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 //        startActivity(intent);
 
         bottomNavigationView = binding.bottomNav;
-        fab = binding.floatingButton;
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
         navController = navHostFragment.getNavController();

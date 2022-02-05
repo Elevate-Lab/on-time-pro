@@ -9,15 +9,16 @@
         android:title="Schedule"
         android:icon="@drawable/ic_schedule_24"/>
     <item
-        android:id="@+id/placeholder"
-        android:title="" />
-    <item
         android:id="@id/assignment"
         android:title="Assignments"
         android:icon="@drawable/ic_assignment_24"/>
     <item
-        android:id="@id/email"
-        android:title="Email"
-        android:icon="@drawable/ic_email_24"/>
+        android:id="@id/upskills"
+        android:title="Upskills"
+        android:icon="@drawable/ic_upskills"/>
 
+    <item
+        android:id="@id/settings"
+        android:title="Settings"
+        android:icon="@drawable/ic_settings_24"/>
 </menu>
