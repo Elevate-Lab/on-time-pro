@@ -6,6 +6,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="web_client_id">770229005978-tee7riokk1nn0qg1udlp1musa3o67pul.apps.googleusercontent.com</string>
     <string name="nodue">No due date</string>
+    <string name="mission">Our Mission is to provide a user friendly interface for college students where they can access all major things required in their college education on a single platform.</string>
+    <string name="vision">Our vision is to make students much more focussed by reducing their load of checking different applications to access information related to their college education.</string>
+    <string name="idea">Our idea is to centralize all the important data related to classes, assignments, etc. on a single platform so as to increase the accessibility of data by college students, and thus reducing the chances of late submissions.</string>
 
     <string-array name="auth_scopes">
         <item>https://www.googleapis.com/auth/classroom.courses</item>
