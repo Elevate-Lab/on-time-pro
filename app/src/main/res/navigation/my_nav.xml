@@ -11,14 +11,17 @@
         android:label="fragment_schedule"
         tools:layout="@layout/fragment_schedule" >
         <action
-            android:id="@+id/action_schedule_to_email"
-            app:destination="@id/email" />
+            android:id="@+id/action_schedule_to_upskills"
+            app:destination="@id/upskills" />
         <action
             android:id="@+id/action_schedule_to_assignment"
             app:destination="@id/assignment" />
         <action
             android:id="@+id/action_schedule_to_classroom"
             app:destination="@id/classroom" />
+        <action
+            android:id="@+id/action_schedule_to_settings"
+            app:destination="@id/settings" />
     </fragment>
     <fragment
         android:id="@+id/assignment"
@@ -26,29 +29,35 @@
         android:label="fragment_assignment"
         tools:layout="@layout/fragment_assignments" >
         <action
-            android:id="@+id/action_assignment_to_email"
-            app:destination="@id/email" />
+            android:id="@+id/action_assignment_to_upskills"
+            app:destination="@id/upskills" />
         <action
             android:id="@+id/action_assignment_to_classroom"
             app:destination="@id/classroom" />
         <action
             android:id="@+id/action_assignment_to_schedule"
             app:destination="@id/schedule" />
+        <action
+            android:id="@+id/action_assignment_to_settings"
+            app:destination="@id/settings" />
     </fragment>
     <fragment
-        android:id="@+id/email"
-        android:name="com.gdsciiita.ontimepro.fragments.EmailAttachFragment"
-        android:label="fragment_email"
-        tools:layout="@layout/fragment_email_attach" >
+        android:id="@+id/upskills"
+        android:name="com.gdsciiita.ontimepro.fragments.UpskillsFragment"
+        android:label="fragment_upskills"
+        tools:layout="@layout/fragment_upskills" >
         <action
-            android:id="@+id/action_email_to_assignment"
+            android:id="@+id/action_upskills_to_assignment"
             app:destination="@id/assignment" />
         <action
-            android:id="@+id/action_email_to_schedule"
+            android:id="@+id/action_upskills_to_schedule"
             app:destination="@id/schedule" />
         <action
-            android:id="@+id/action_email_to_classroom"
+            android:id="@+id/action_upskills_to_classroom"
             app:destination="@id/classroom" />
+        <action
+            android:id="@+id/action_upskills_to_settings"
+            app:destination="@id/settings" />
     </fragment>
     <fragment
         android:id="@+id/classroom"
@@ -59,12 +68,33 @@
             android:id="@+id/action_classroom_to_schedule"
             app:destination="@id/schedule" />
         <action
-            android:id="@+id/action_classroom_to_email"
-            app:destination="@id/email" />
+            android:id="@+id/action_classroom_to_upskills"
+            app:destination="@id/upskills" />
         <action
             android:id="@+id/action_classroom_to_assignment"
             app:destination="@id/assignment" />
-    </fragment>
+        <action
+            android:id="@+id/action_classroom_to_settings"
+            app:destination="@id/settings" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.gdsciiita.ontimepro.fragments.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" >
+    <action
+        android:id="@+id/action_settings_to_classroom"
+        app:destination="@id/classroom" />
+    <action
+        android:id="@+id/action_settings_to_schedule"
+        app:destination="@id/schedule" />
+    <action
+        android:id="@+id/action_settings_to_upskills"
+        app:destination="@id/upskills" />
+    <action
+        android:id="@+id/action_settings_to_assignment"
+        app:destination="@id/assignment" />
+    </fragment>
 
 </navigation>

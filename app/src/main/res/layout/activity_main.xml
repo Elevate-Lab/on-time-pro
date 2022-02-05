@@ -24,7 +24,7 @@
             android:layout_below="@+id/toolBar"
             android:layout_centerHorizontal="true"
             app:defaultNavHost="true"
-            android:layout_above="@id/floatingButton"
+            android:layout_above="@id/bottomNav"
             android:layout_marginBottom="?actionBarSize"
             app:navGraph="@navigation/my_nav" />
 
@@ -51,16 +51,6 @@
                 android:background="@drawable/background_transparent"
                 app:menu="@menu/menu" />
 
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:clickable="true"
-                android:focusable="true"
-                android:src="@drawable/ic_baseline_add_24"
-                app:layout_anchor="@id/bottomAppBar" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
